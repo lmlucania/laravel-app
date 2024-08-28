@@ -27,7 +27,7 @@ services:
 
     mysql:
         container_name: ${PROJECT_NAME}_mysql
-        image: mysql
+        image: mysql:8.0
         volumes: 
             - ./database:/var/lib/mysql
         ports:
