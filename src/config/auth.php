@@ -36,9 +36,9 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'staffs' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'staffs',
         ],
     ],
 
@@ -60,6 +60,10 @@ return [
     */
 
     'providers' => [
+        'staffs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\HospitalStaffModel::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
@@ -91,6 +95,12 @@ return [
     */
 
     'passwords' => [
+        'staffs' => [
+            'provider' => 'staffs',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'staff_password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
         'users' => [
             'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),

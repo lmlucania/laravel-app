@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (request()->is('hospital*')) {
+            config([
+                'session.cookie' => config('session.cookie_staff'),
+                'session.table'  => config('session.table_staff'),
+            ]);
+        }
     }
 }
