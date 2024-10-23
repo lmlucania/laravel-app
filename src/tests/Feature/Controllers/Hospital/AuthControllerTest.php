@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Hospital;
 
 use App\Models\HospitalModel;
@@ -14,16 +16,16 @@ class AuthControllerTest extends TestCase
 
     private string $guard = 'staffs';
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->staff = HospitalStaffModel::factory()->create([
-            'id' => 1,
+            'id'          => 1,
             'hospital_id' => HospitalModel::factory()->create()->id,
-            'name' => 'test',
-            'email'    => 'test@example.com',
-            'password' => Hash::make('password'),
+            'name'        => 'test',
+            'email'       => 'test@example.com',
+            'password'    => Hash::make('password'),
         ]);
     }
 
@@ -64,8 +66,8 @@ class AuthControllerTest extends TestCase
             ->assertStatus(401)
             ->assertJsonCount(2)
             ->assertJsonFragment([
-                'error' => 'Unauthorized',
-                'message' => 'ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。'
+                'error'   => 'Unauthorized',
+                'message' => 'ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。',
             ]);
     }
 
@@ -89,8 +91,8 @@ class AuthControllerTest extends TestCase
             ->assertStatus(401)
             ->assertJsonCount(2)
             ->assertJsonFragment([
-                'error' => 'Unauthorized',
-                'message' => 'ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。'
+                'error'   => 'Unauthorized',
+                'message' => 'ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。',
             ]);
     }
 
@@ -114,9 +116,9 @@ class AuthControllerTest extends TestCase
             ->assertStatus(422)
             ->assertJsonCount(2)
             ->assertJsonFragment([
-                'message'   => 'バリデーションエラー',
-                'errors' => [
-                    'email'=> ['validation.required'],
+                'message' => 'バリデーションエラー',
+                'errors'  => [
+                    'email' => ['validation.required'],
                 ],
             ]);
     }
@@ -141,9 +143,9 @@ class AuthControllerTest extends TestCase
             ->assertStatus(422)
             ->assertJsonCount(2)
             ->assertJsonFragment([
-                'message'   => 'バリデーションエラー',
-                'errors' => [
-                    'password'=> ['validation.required'],
+                'message' => 'バリデーションエラー',
+                'errors'  => [
+                    'password' => ['validation.required'],
                 ],
             ]);
     }
@@ -165,7 +167,7 @@ class AuthControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonCount(1)
             ->assertJson([
-                'message'=> 'ログアウトが成功しました。',
+                'message' => 'ログアウトが成功しました。',
             ]);
     }
 
