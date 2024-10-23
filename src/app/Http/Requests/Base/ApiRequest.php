@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Base;
 
 use Illuminate\Contracts\Validation\Validator;
@@ -16,7 +18,7 @@ class ApiRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $response['message'] = 'バリデーションエラー';
-        $response['errors'] = $validator->errors()->toArray();
+        $response['errors']  = $validator->errors()->toArray();
 
         throw new HttpResponseException(
             response()->json($response, 422)

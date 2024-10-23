@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Hospital;
 
 use App\Http\Requests\Base\ApiRequest;
