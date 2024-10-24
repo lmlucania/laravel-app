@@ -17,9 +17,23 @@ class LoginRequest extends ApiRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @OA\Schema(
+     *     schema="Requests/Hospital/LoginRequest",
+     *     type="object",
+     *     required={"email", "password",},
+     *     description="病院スタッフログイン",
+     *     @OA\Property(
+     *          property="email",
+     *          type="string",
+     *          example="staff+1@example.com"
+     *     ),
+     *     @OA\Property(
+     *          property="password",
+     *          type="string",
+     *          format="password",
+     *          example="password"
+     *     )
+     * )
      */
     public function rules(): array
     {
